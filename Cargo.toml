@@ -1,0 +1,11 @@
+[package]
+name = "izhikevich-rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rand = "0.8.5"
+plotters = "0.3.3"
+rayon = "1.10.0"
+rand_distr = "0.4.3"
+clap = { version = "4.5.27", features = ["derive"] }
