@@ -69,32 +69,11 @@ impl Neuron {
 
     pub fn from_neuron_type(neuron_type: NeuronType) -> Self {
         let parameters = neuron_type.params();
-        let mut rng = rand::thread_rng();
 
         let synapse_type = neuron_type.into();
-        let params = match synapse_type {
-            SynapseType::Excitatory => {
-                let r = rng.gen::<f64>();
-                NeuronParameters {
-                    a: parameters.a,
-                    b: parameters.b,
-                    c: -65. + 15. * r * r,
-                    d: 8. - 6. * r * r,
-                }
-            }
-            SynapseType::Inhibitory => {
-                let r = rng.gen::<f64>();
-                NeuronParameters {
-                    a: 0.02 + 0.08 * r,
-                    b: 0.25 - 0.05 * r,
-                    c: -65.,
-                    d: 2.,
-                }
-            }
-        };
 
         Neuron {
-            parameters: params,
+            parameters: parameters.clone(),
             synapse_type,
             connection_weights: vec![],
             v: -65.,
